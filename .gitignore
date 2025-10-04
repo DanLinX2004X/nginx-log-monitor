@@ -1,0 +1,23 @@
+# .gitignore
+
+# Environment
+.env
+
+# logs and data of monitoring
+logs/*.log
+errors.json
+sent_alerts.txt
+monitor_data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE Files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db

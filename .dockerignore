@@ -1,0 +1,21 @@
+# git-repo
+.git
+.gitignore
+
+# logs and data of monitoring
+logs/*
+monitor_data/*
+errors.json
+sent_alerts.txt
+
+# config env
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE files
+.vscode/
+.idea/
