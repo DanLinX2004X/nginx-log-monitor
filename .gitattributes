@@ -6,6 +6,11 @@
 
 
 # GITHUB LANGUAGES STATISTICS
+# Radical method detect YAML/Json
+* linguist-language=YAML
+*.yml linguist-detectable=true
+*.yaml linguist-detectable=true
+*.json linguist-language=JSON
 
 # Programming Languages
 *.py linguist-language=Python
