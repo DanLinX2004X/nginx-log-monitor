@@ -3,6 +3,11 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [main, develop]
+    paths-ignore:
+      - '**/*.md'
+      - 'screenshots/**'
+    tags:
+      - 'v*'
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -66,6 +71,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Extract version from tag
+      id: version
+      if: startsWith(github.ref, 'refs/tags/v')
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
@@ -74,3 +86,4 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:latest
           ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:${{ steps.version.outputs.version }}
