@@ -4,6 +4,8 @@
 [![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://python.org)
 [![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg?logo=docker)](https://docker.com)
 [![Telegram](https://img.shields.io/badge/telegram-bot-26A5E4.svg?logo=telegram)](https://telegram.org)
+[![Docker Image](https://img.shields.io/badge/Docker%20Hub-nginx--log--monitor-blue?logo=docker)](https://hub.docker.com/r/danlinx2004x/nginx-log-monitor)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI/CD%20Pipeline-blue?logo=githubactions)](https://github.com/DanLinX2004X/nginx-log-monitor/actions)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **🇺🇸 English** | **🇷🇺 [Russian Version](README.ru.md)**
@@ -105,9 +107,9 @@ Status: 500
 Request: GET /api/users
 ```
 
-## ⚙️ CI Pipeline Overview
+## ⚙️ CI/CD Pipeline Overview
 
-This project includes a lightweight Continuous Integration (CI) workflow powered by GitHub Actions.
+This project features a robust CI/CD pipeline powered by GitHub Actions, automating both testing and deployment.
 
 ### 🛠 Pipeline Stages:
 
@@ -116,11 +118,19 @@ This project includes a lightweight Continuous Integration (CI) workflow powered
 3. **Docker Build Test** — Validates that the Docker image can be built successfully
 4. **Compose Check** — Verifies the correctness of the docker-compose.yml
 5. **Security Scanning** — Basic checks for exposed secrets and vulnerabilities
+6. **Docker Hub Deployment** — Automatically builds and publishes the image to Docker Hub
 
 ### ✅ Automation:
-- **Automatic triggers**: On every push or pull request to `main` and `develop` branches
+- **Continuous Integration**: On every push or pull request to `main` and `develop` branches
+- **Continuous Deployment**: Automatic Docker image publishing on pushes to `main` branch
 - **Manual execution**: Available via GitHub Actions UI
 - **Fast feedback**: Immediate validation of code changes
+
+### 🐳 Docker Image Availability:
+The application is automatically published to Docker Hub and available as:
+```bash
+docker pull danlinx2004x/nginx-log-monitor:latest
+```
 
 ## 🐛 Troubleshooting
 
