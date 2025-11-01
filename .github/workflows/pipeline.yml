@@ -86,4 +86,4 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:latest
           ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:${{ github.sha }}
-          ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:${{ github.ref_name }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/nginx-log-monitor:${{ github.ref }}
