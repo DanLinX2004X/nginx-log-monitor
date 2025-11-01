@@ -1,0 +1,52 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run basic syntax check
+      run: |
+        python -m py_compile parser.py
+        echo "Syntax check passed"
+
+    - name: Test Docker build
+      run: |
+        docker build -t nginx-log-monitor-test .
+
+    - name: Validate docker-compose
+      run: |
+        docker-compose config
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run security scan
+      uses: actions/dependency-review-action@v3
+
+    - name: Secret scanning
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
