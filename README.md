@@ -105,6 +105,23 @@ Status: 500
 Request: GET /api/users
 ```
 
+## ⚙️ CI Pipeline Overview
+
+This project includes a lightweight Continuous Integration (CI) workflow powered by GitHub Actions.
+
+### 🛠 Pipeline Stages:
+
+1. **Dependency Setup** — Installs project requirements and updates pip
+2. **Syntax Validation** — Runs py_compile to ensure the code is clean  
+3. **Docker Build Test** — Validates that the Docker image can be built successfully
+4. **Compose Check** — Verifies the correctness of the docker-compose.yml
+5. **Security Scanning** — Basic checks for exposed secrets and vulnerabilities
+
+### ✅ Automation:
+- **Automatic triggers**: On every push or pull request to `main` and `develop` branches
+- **Manual execution**: Available via GitHub Actions UI
+- **Fast feedback**: Immediate validation of code changes
+
 ## 🐛 Troubleshooting
 
 ### Telegram Not Working
@@ -152,10 +169,14 @@ nginx-log-monitor/
 ├── Dockerfile                  # Monitor container
 ├── parser.py                   # Main monitoring script
 ├── requirements.txt            # Python dependencies
-├── .env.example               # Configuration template
-├── html/                      # Web content
-│   └── index.html            # Test page
-└── logs/                      # Nginx logs (auto-created)
+├── .env.example                # Configuration template
+├── html/                       # Web content
+│   └── index.html              # Test page
+├── .github                     # GitHub Actions CI/CD pipelines
+│   └── /workflows/             
+|            └── ci.yml         # Main CI pipeline configuration
+|──logs/                        # Nginx logs (auto-created)
+└── .gitattributes              # Repository metadata
 ```
 
 ## 🤝 Contributing
